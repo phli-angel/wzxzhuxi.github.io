@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Particle Canvas Background */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    /* Ensure content is above particles */
+    header, nav, main, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Bold Header with Black Background */
+    header {
+      background: #000;
+      color: #fff;
+      padding: 2rem 0;
+      border-bottom: 8px solid #fff;
+      transition: padding 0.3s ease;
+    }
+
+    /* Home page - larger header */
+    body.page-home header {
+      padding: 3rem 0;
+    }
+
+    /* About/Team pages - compact header */
+    body.page-about header,
+    body.page-team header {
+      padding: 1.5rem 0;
+    }
+
+    header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      margin-bottom: 0.5rem;
+      transition: font-size 0.3s ease;
+    }
+
+    /* Home page - larger title */
+    body.page-home header h1 {
+      font-size: 3.5rem;
+    }
+
+    /* About/Team pages - smaller title */
+    body.page-about header h1,
+    body.page-team header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.8;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: font-size 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Home page - show description */
+    body.page-home header p {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+
+    /* About/Team pages - smaller description */
+    body.page-about header p,
+    body.page-team header p {
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    /* Navigation - Inverted */
+    nav {
+      background: #fff;
+      border-bottom: 3px solid #000;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    nav a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0.5rem 1.5rem;
+      transition: all 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+
+    nav a:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    /* Main Content - Dramatic Spacing */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      min-height: 60vh;
+    }
+
+    /* Typography - BOLD */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin: 3rem 0 1.5rem 0;
+    }
+
+    main h1 {
+      font-size: 3.5rem;
+      border-bottom: 6px solid #000;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    main h2 {
+      font-size: 2.5rem;
+      border-left: 8px solid #000;
+      padding-left: 1rem;
+    }
+
+    main h3 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Links - Bold Underline */
+    main a {
+      color: #000;
+      text-decoration: none;
+      border-bottom: 3px solid #000;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    main a:hover {
+      background: #000;
+      color: #fff;
+      padding: 0 0.2rem;
+    }
+
+    /* Lists - Dramatic Bullets */
+    ul, ol {
+      margin: 2rem 0 2rem 2rem;
+    }
+
+    li {
+      margin: 0.8rem 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    ul li::marker {
+      content: "▪ ";
+      font-size: 1.5rem;
+    }
+
+    /* Code Blocks - High Contrast */
+    pre {
+      background: #000;
+      color: #fff;
+      padding: 2rem;
+      overflow-x: auto;
+      border-radius: 0;
+      margin: 2rem 0;
+      border: 4px solid #000;
+      font-family: "SF Mono", Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    code {
+      background: #f0f0f0;
+      padding: 0.2rem 0.5rem;
+      font-family: "SF Mono", Monaco, monospace;
+      font-size: 0.9em;
+      border: 1px solid #000;
+    }
+
+    pre code {
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: #fff;
+    }
+
+    /* Blockquotes - Dramatic */
+    blockquote {
+      border-left: 10px solid #000;
+      padding: 2rem 2rem 2rem 3rem;
+      margin: 3rem 0;
+      background: #f5f5f5;
+      font-size: 1.3rem;
+      font-style: italic;
+      position: relative;
+    }
+
+    blockquote::before {
+      content: """;
+      font-size: 6rem;
+      position: absolute;
+      left: 1rem;
+      top: 0;
+      opacity: 0.2;
+      font-family: Georgia, serif;
+    }
+
+    /* Footer - Black */
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 3rem 0;
+      margin-top: 6rem;
+      border-top: 8px solid #fff;
+    }
+
+    footer .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5rem; }
+      main h1 { font-size: 2.2rem; }
+      main h2 { font-size: 1.8rem; }
+      nav .nav-links { gap: 0; }
+      nav a { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body class="{% if page.layout == 'home' %}page-home{% elsif page.url contains '/about' %}page-about{% elsif page.url contains '/team' %}page-team{% else %}page-{{ page.layout }}{% endif %}">
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>{{ site.title }}</h1>
+      <p>{{ site.description }}</p>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <a href="/" style="border-bottom: none;">HOME</a>
+      <div class="nav-links">
+        <a href="/about/">ABOUT</a>
+        <a href="/team/">TEAM</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    {{ content }}
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 {{ site.title }}. Innovation through collaboration.</p>
+    </div>
+  </footer>
+
+  <!-- Particle Background -->
+  <canvas id="particles"></canvas>
+
+  <script>
+    // 3D Particle System
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let mouseScreenX = -1000;
+    let mouseScreenY = -1000;
+    let mouseActive = false;
+
+    // Set canvas size
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Track mouse for parallax and interaction
+    document.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX - window.innerWidth / 2) / 100;
+      mouseY = (e.clientY - window.innerHeight / 2) / 100;
+      mouseScreenX = e.clientX;
+      mouseScreenY = e.clientY;
+      mouseActive = true;
+    });
+
+    // Hide mouse interaction when leaving window
+    document.addEventListener('mouseleave', () => {
+      mouseActive = false;
+    });
+
+    // 3D Particle class
+    class Particle3D {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        // 3D coordinates
+        this.x = Math.random() * 2000 - 1000;
+        this.y = Math.random() * 2000 - 1000;
+        this.z = Math.random() * 2000 - 1000;
+
+        // Velocity
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.vz = (Math.random() - 0.5) * 2;
+
+        // Rotation
+        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
+      }
+
+      update() {
+        // Mouse attraction effect
+        if (mouseActive) {
+          const projected = this.project();
+          const dx = mouseScreenX - projected.x;
+          const dy = mouseScreenY - projected.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 200) {
+            const force = (200 - distance) / 200;
+            this.vx += (dx / distance) * force * 0.3;
+            this.vy += (dy / distance) * force * 0.3;
+          }
+        }
+
+        // Apply velocity damping
+        this.vx *= 0.98;
+        this.vy *= 0.98;
+
+        // Rotate around center
+        const angle = this.rotationSpeed;
+        const cosA = Math.cos(angle);
+        const sinA = Math.sin(angle);
+
+        const newX = this.x * cosA - this.z * sinA;
+        const newZ = this.x * sinA + this.z * cosA;
+
+        this.x = newX;
+        this.z = newZ;
+
+        // Move particles
+        this.x += this.vx;
+        this.y += this.vy;
+        this.z += this.vz;
+
+        // Respawn if out of bounds
+        if (this.z > 1000 || this.z < -1000 ||
+            this.x > 1000 || this.x < -1000 ||
+            this.y > 1000 || this.y < -1000) {
+          this.reset();
+        }
+      }
+
+      project() {
+        // 3D to 2D projection with perspective
+        const perspective = 800;
+        const fov = perspective / (perspective + this.z);
+
+        // Add mouse parallax
+        const offsetX = mouseX * (1 - fov) * 50;
+        const offsetY = mouseY * (1 - fov) * 50;
+
+        return {
+          x: this.x * fov + canvas.width / 2 + offsetX,
+          y: this.y * fov + canvas.height / 2 + offsetY,
+          size: (1 - this.z / 1000) * 3 + 1,
+          opacity: Math.max(0, 1 - Math.abs(this.z) / 1000) * 0.6,
+          z: this.z
+        };
+      }
+
+      draw() {
+        const projected = this.project();
+
+        if (projected.x < -50 || projected.x > canvas.width + 50 ||
+            projected.y < -50 || projected.y > canvas.height + 50) {
+          return null;
+        }
+
+        // Draw particle
+        ctx.fillStyle = `rgba(0, 0, 0, ${projected.opacity})`;
+        ctx.beginPath();
+        ctx.arc(projected.x, projected.y, projected.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        return projected;
+      }
+    }
+
+    // Create particles
+    const particleCount = 200;
+    const particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle3D());
+    }
+
+    // Animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw particles
+      const projected = [];
+      particles.forEach(particle => {
+        particle.update();
+        const p = particle.draw();
+        if (p) projected.push(p);
+      });
+
+      // Draw connections between nearby particles
+      for (let i = 0; i < projected.length; i++) {
+        for (let j = i + 1; j < projected.length; j++) {
+          const dx = projected[i].x - projected[j].x;
+          const dy = projected[i].y - projected[j].y;
+          const dz = projected[i].z - projected[j].z;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distance3D = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+          if (distance < 150 && distance3D < 300) {
+            const opacity = (1 - distance / 150) * 0.3 *
+                           Math.min(projected[i].opacity, projected[j].opacity);
+            ctx.strokeStyle = `rgba(0, 0, 0, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(projected[i].x, projected[i].y);
+            ctx.lineTo(projected[j].x, projected[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw mouse connections
+      if (mouseActive) {
+        // Draw mouse cursor glow
+        const gradient = ctx.createRadialGradient(mouseScreenX, mouseScreenY, 0, mouseScreenX, mouseScreenY, 100);
+        gradient.addColorStop(0, 'rgba(0, 0, 0, 0.1)');
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(mouseScreenX - 100, mouseScreenY - 100, 200, 200);
+
+        // Draw lines from mouse to nearby particles
+        projected.forEach(p => {
+          const dx = mouseScreenX - p.x;
+          const dy = mouseScreenY - p.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 180) {
+            const opacity = (1 - distance / 180) * 0.5 * p.opacity;
+            ctx.strokeStyle = `rgba(0, 0, 0, ${opacity})`;
+            ctx.lineWidth = (1 - distance / 180) * 2;
+            ctx.beginPath();
+            ctx.moveTo(mouseScreenX, mouseScreenY);
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+          }
+        });
+
+        // Draw mouse point
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+        ctx.beginPath();
+        ctx.arc(mouseScreenX, mouseScreenY, 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

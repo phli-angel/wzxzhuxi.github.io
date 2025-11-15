@@ -1,0 +1,41 @@
+# Site settings
+title: A_Bit_S Team Blog
+description: Innovation through collaboration - A 5-member team exploring technology, development, and creative solutions
+author: A_Bit_S Team
+
+# GitHub Pages specific settings
+# Change this to your GitHub username/repo-name for proper URLs
+baseurl: "" # e.g., "/repo-name" if not using custom domain
+url: "" # e.g., "https://username.github.io"
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Plugins allowed by GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Pagination
+paginate: 6
+paginate_path: "/page/:num/"
+
+# Navigation
+header_pages:
+  - about.md
+  - team.md
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .gitignore
+  - README.md
