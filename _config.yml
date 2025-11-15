@@ -4,9 +4,9 @@ description: Innovation through collaboration - A 5-member team exploring techno
 author: A_Bit_S Team
 
 # GitHub Pages specific settings
-# Change this to your GitHub username/repo-name for proper URLs
-baseurl: "" # e.g., "/repo-name" if not using custom domain
-url: "" # e.g., "https://username.github.io"
+# Hosting at https://wzxzhuxi.github.io with no base prefix
+baseurl: "" # user/organization pages keep this empty
+url: "https://wzxzhuxi.github.io"
 
 # Build settings
 markdown: kramdown

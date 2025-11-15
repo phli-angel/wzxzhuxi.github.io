@@ -19,7 +19,7 @@
 - **校验**：提交前运行 `bundle exec jekyll build --trace`，并使用 `bundle exec jekyll doctor` 检查失效链接或缺失资源。
 
 ## 部署
-根据部署平台（GitHub Pages 或自定义 CI）执行发布流程，但都应以 `JEKYLL_ENV=production bundle exec jekyll build` 生成的 `_site/` 目录为准。不要把 `_site/` 提交到版本库。
+当前部署目标是 GitHub Pages（`https://wzxzhuxi.github.io/`）。通过 GitHub Actions 或 Pages 分支执行 `JEKYLL_ENV=production bundle exec jekyll build`，将 `_site/` 发布到该站点。不要把 `_site/` 提交到版本库。
 
 ## 贡献指南
 遵循 `AGENTS.md` 中的分支、测试和 PR 规范。保持小而聚焦的提交，使用祈使句式（如 `Add hero section layout`），视觉改动附上截图或 GIF。提交评审前确认 `jekyll build` 与 `jekyll doctor` 均通过。

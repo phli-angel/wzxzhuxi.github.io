@@ -19,7 +19,7 @@ This repository hosts a Jekyll-powered static site. Content pages (`index.html`,
 - **Validation**: run `bundle exec jekyll build --trace` before opening a pull request. For sanity checks, run `bundle exec jekyll doctor` to catch broken permalinks or missing assets.
 
 ## Deployment
-Deployment depends on the environment (GitHub Pages, custom CI, etc.). Regardless of the target, deploy the contents of `_site/` produced by `bundle exec jekyll build JEKYLL_ENV=production`. Never commit `_site/` to version control.
+Deployment targets GitHub Pages at `https://wzxzhuxi.github.io/`. Use the provided GitHub Actions workflow (or Pages branch) to run `JEKYLL_ENV=production bundle exec jekyll build` and publish `_site/`. Never commit `_site/` to version control.
 
 ## Contributing
 Follow the workflows documented in `AGENTS.md` for branching, testing, and pull-request expectations. Keep commits small, use imperative subject lines (e.g., `Add hero section layout`), and include screenshots for visual updates. Ensure `jekyll build` and `jekyll doctor` both succeed locally before requesting a review.
