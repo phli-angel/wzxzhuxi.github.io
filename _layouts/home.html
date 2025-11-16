@@ -13,30 +13,50 @@ layout: default
         <a href="{{ post.url }}">{{ post.title }}</a>
       </h2>
       <p class="post-meta">
-        {{ post.date | date: "%B %d, %Y" }}
-        {% if post.author %} • {{ post.author }}{% endif %}
+        {{ post.date | date: "%Y-%m-%d" }}
+        {% if post.author %} • 作者：{{ post.author }}{% endif %}
       </p>
       <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-      <a href="{{ post.url }}" class="read-more">READ MORE →</a>
+      <a href="{{ post.url }}" class="read-more">阅读全文 →</a>
     </article>
   {% endfor %}
 </div>
+
+{% if site.books and site.books.size > 0 %}
+<section class="books-section">
+  <h2 class="books-heading">书籍项目</h2>
+  <div class="posts-grid">
+    {% assign books_sorted = site.books | sort: "order" %}
+    {% for book in books_sorted %}
+      <article class="post-card">
+        <div class="post-number">BK{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+        <h2>
+          <a href="{{ book.url }}">{{ book.title }}</a>
+        </h2>
+        <p class="post-meta">多章节长文</p>
+        <p class="post-excerpt">{{ book.description | strip_html | truncate: 220 }}</p>
+        <a href="{{ book.url }}" class="read-more">查看章节 →</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 
 <!-- Pagination -->
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="pagination-prev">← PREVIOUS</a>
+    <a href="{{ paginator.previous_page_path }}" class="pagination-prev">← 上一页</a>
   {% else %}
-    <span class="pagination-prev disabled">← PREVIOUS</span>
+    <span class="pagination-prev disabled">← 上一页</span>
   {% endif %}
 
-  <span class="pagination-info">PAGE {{ paginator.page }} OF {{ paginator.total_pages }}</span>
+  <span class="pagination-info">第 {{ paginator.page }} / {{ paginator.total_pages }} 页</span>
 
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="pagination-next">NEXT →</a>
+    <a href="{{ paginator.next_page_path }}" class="pagination-next">下一页 →</a>
   {% else %}
-    <span class="pagination-next disabled">NEXT →</span>
+    <span class="pagination-next disabled">下一页 →</span>
   {% endif %}
 </div>
 {% endif %}
@@ -116,14 +136,12 @@ layout: default
     letter-spacing: 0.1em;
     border: 3px solid #000 !important;
     transition: background-color 0.2s ease, color 0.2s ease;
-    /* 固定尺寸，确保 hover 时不变 */
     box-sizing: border-box;
   }
 
   .read-more:hover {
     background: #fff !important;
     color: #000 !important;
-    /* 保持完全相同的 padding 和 border */
     padding: 0.8rem 2rem;
     border: 3px solid #000 !important;
   }
@@ -184,6 +202,17 @@ layout: default
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.2em;
+  }
+
+  .books-section {
+    margin-top: 5rem;
+    border-top: 4px solid #000;
+    padding-top: 3rem;
+  }
+
+  .books-heading {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   @media (max-width: 768px) {

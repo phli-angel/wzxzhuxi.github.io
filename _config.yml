@@ -1,6 +1,6 @@
 # Site settings
-title: A_Bit_S Team Blog
-description: Innovation through collaboration - A 5-member team exploring technology, development, and creative solutions
+title: A_Bit_S Blog
+description: 愿你的生命如花朵般绽放
 author: A_Bit_S Team
 
 # GitHub Pages specific settings
@@ -19,13 +19,38 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
 
+# Collections
+collections:
+  books:
+    output: true
+    permalink: /books/:name/
+  chapters:
+    output: true
+
+# Defaults for collections and posts
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      author: A_Bit_S Team
+  - scope:
+      path: ""
+      type: books
+    values:
+      layout: book
+  - scope:
+      path: ""
+      type: chapters
+    values:
+      layout: chapter
+
 # Pagination
 paginate: 6
 paginate_path: "/page/:num/"
 
 # Navigation
 header_pages:
-  - about.md
   - team.md
 
 # Exclude from processing

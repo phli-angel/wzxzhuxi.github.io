@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="16x16" type="image/x-icon">
 
   <style>
     /* Reset & Base */
@@ -45,71 +46,35 @@
       z-index: 1;
     }
 
-    /* Bold Header with Black Background */
+    /* Site Header */
     header {
       background: #000;
       color: #fff;
-      padding: 2rem 0;
-      border-bottom: 8px solid #fff;
+      padding: 0.64rem 0;
+      border-bottom: 6px solid #fff;
       transition: padding 0.3s ease;
-    }
-
-    /* Home page - larger header */
-    body.page-home header {
-      padding: 3rem 0;
-    }
-
-    /* About/Team pages - compact header */
-    body.page-about header,
-    body.page-team header {
-      padding: 1.5rem 0;
     }
 
     header .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.5rem;
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: 1.75rem;
       font-weight: 900;
       letter-spacing: -0.05em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
       transition: font-size 0.3s ease;
     }
 
-    /* Home page - larger title */
-    body.page-home header h1 {
-      font-size: 3.5rem;
-    }
-
-    /* About/Team pages - smaller title */
-    body.page-about header h1,
-    body.page-team header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.3rem;
-    }
-
     header p {
-      font-size: 1rem;
-      opacity: 0.8;
+      font-size: 0.75rem;
+      opacity: 0.75;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       transition: font-size 0.3s ease, opacity 0.3s ease;
-    }
-
-    /* Home page - show description */
-    body.page-home header p {
-      font-size: 1.1rem;
-      opacity: 0.8;
-    }
-
-    /* About/Team pages - smaller description */
-    body.page-about header p,
-    body.page-team header p {
-      font-size: 0.85rem;
-      opacity: 0.6;
     }
 
     /* Navigation - Inverted */
@@ -303,7 +268,7 @@
     }
   </style>
 </head>
-<body class="{% if page.layout == 'home' %}page-home{% elsif page.url contains '/about' %}page-about{% elsif page.url contains '/team' %}page-team{% else %}page-{{ page.layout }}{% endif %}">
+<body class="{% if page.layout == 'home' %}page-home{% elsif page.url contains '/team' %}page-team{% else %}page-{{ page.layout }}{% endif %}">
   <!-- Header -->
   <header>
     <div class="container">
@@ -315,10 +280,11 @@
   <!-- Navigation -->
   <nav>
     <div class="container">
-      <a href="/" style="border-bottom: none;">HOME</a>
+      <a href="/" style="border-bottom: none;">首页</a>
       <div class="nav-links">
-        <a href="/about/">ABOUT</a>
-        <a href="/team/">TEAM</a>
+        <a href="/authors/">查找</a>
+        <a href="/books/">书籍</a>
+        <a href="/team/">团队</a>
       </div>
     </div>
   </nav>
@@ -331,7 +297,7 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 {{ site.title }}. Innovation through collaboration.</p>
+      <p>&copy; 2025 {{ site.title }} · 创新源于协作.</p>
     </div>
   </footer>
 

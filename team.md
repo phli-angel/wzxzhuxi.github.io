@@ -4,61 +4,69 @@ title: Team
 permalink: /team/
 ---
 
-# Meet the A_Bit_S Team
+# 认识 A_Bit_S 团队
 
-Our team of five brings diverse expertise and perspectives to every project.
+我们围绕实际项目积累经验，在不同领域彼此支撑。
 
 ---
 
 ## Core Members
 
-### Alex Chen - Team Lead & Backend Developer
-**Specialization**: Distributed Systems, Cloud Architecture
+### Zhuxi 老王 - 团队负责人 / 后端工程师
+**领域**：嵌入式开发、分布式系统
 
-Alex leads our technical direction with 8 years of experience in backend development. Expert in microservices architecture and passionate about building scalable systems.
+Zhuxi 热衷函数式编程与底层技术，是团队组织者与 GNU/Linux 爱好者。
 
-**Recent Focus**: Kubernetes orchestration, gRPC services
-
----
-
-### Jordan Kim - Frontend Engineer
-**Specialization**: UI/UX, React Ecosystem
-
-Jordan crafts beautiful, performant user interfaces that users love. Strong advocate for accessibility and modern web standards.
-
-**Recent Focus**: Next.js, TypeScript, Design systems
+**近期关注**：Kubernetes 编排、gRPC 服务
 
 ---
 
-### Sam Rodriguez - DevOps & Security
-**Specialization**: Infrastructure, CI/CD, Security
+### Phli 老高 - 上位机工程师
+**领域**：C#/.NET、工业控制
 
-Sam keeps our systems running smoothly and securely. Expert in automation and building resilient infrastructure pipelines.
+Phli 负责设备控制、数据交互与三维可视化协作，也常常在本站分享前端与工控相关文章，严重代码强迫症患者。
 
-**Recent Focus**: GitOps, Zero-trust architecture, Container security
-
----
-
-### Taylor Morgan - Data Engineer
-**Specialization**: Machine Learning, Data Pipeline
-
-Taylor transforms raw data into actionable insights. Builds robust data pipelines and explores ML applications.
-
-**Recent Focus**: Real-time data processing, MLOps, Feature engineering
+**近期关注**：C/S 架构、DCS 技术
 
 ---
 
-### Casey Liu - Full-Stack Developer
-**Specialization**: API Design, Database Optimization
+### Allen 没看见 - 嵌入式工程师
+**领域**：STM32、ROS
 
-Casey bridges frontend and backend seamlessly. Known for clean API design and database performance optimization.
+Allen 负责各种牛马活，能干但不多，看到消息请及时 @ 他催更。
 
-**Recent Focus**: GraphQL, PostgreSQL optimization, API gateway patterns
+**近期关注**：Autoware、双目相机、AGV
 
 ---
 
-## Collaboration
+### Leon 鱼晓亮 - 大数据分析
+**领域**：机器学习、数据管道
 
-While each member has their specialty, we operate as a true team - reviewing code together, pair programming, and constantly learning from each other.
+Leon 擅长把原始数据转化为可执行洞察，搭建稳健的数据管道并探索机器学习的应用。
 
-**Want to work with us?** Follow our blog to see what we're building!
+**近期关注**：实时数据处理、MLOps、特征工程
+
+---
+
+### Big 白 - 云基础设施与 SRE
+**领域**：云原生架构、站点可靠性
+
+Big 负责基础设施稳定运行，设计高可用架构、沉淀应急手册，并完善值班与发布流程。
+
+**近期关注**：可观测性自动化、故障响应手册、FinOps
+
+---
+
+## 非 IT 合作伙伴
+
+### BG 牛志 - 金融从业者
+
+BG 为我们的金融分析平台提供宝贵洞察，目前在资产管理公司任职，努力学习期货交易，希望早日与爱人共居一城。
+
+**近期关注**：心态管理
+
+---
+
+## 协作方式
+
+我们围绕同一个目标协作，频繁结对、互审代码、持续学习，共同推动项目前进。
