@@ -6,8 +6,14 @@ permalink: /books/
 
 <section class="books-collection">
   <div class="posts-grid">
-    {% assign books_sorted = site.books | sort: "order" %}
-    {% for book in books_sorted %}
+    {% assign all_books = "" | split: "" %}
+    {% for item in site.books %}
+      {% unless item.book or item.path contains 'TEMPLATE' %}
+        {% assign all_books = all_books | push: item %}
+      {% endunless %}
+    {% endfor %}
+    {% assign all_books = all_books | sort: "order" %}
+    {% for book in all_books %}
       <article class="post-card">
         <div class="post-number">BK{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
         <h2>

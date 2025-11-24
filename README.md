@@ -44,10 +44,31 @@ bundle exec jekyll doctor
 ├── _posts/
 │   └── YYYY/                 # 按年份组织的文章
 │       └── YYYY-MM-DD-slug.md
-├── _books/                   # 书籍元数据
+├── _templates/               # 模板目录(不会被Jekyll处理)
+│   ├── POST_TEMPLATE.md
+│   ├── BOOK_TEMPLATE.md
+│   ├── CHAPTER_TEMPLATE.md
+│   └── DIARY_TEMPLATE.md
+├── _books/                   # 书籍元数据文件(扁平结构)
+│   ├── cpp-functional-programming.md
 │   └── book-slug.md
-├── _chapters/                # 书籍章节
-│   └── book-slug-01.md
+├── _chapters/                # 章节按书籍分子目录
+│   ├── cpp-functional-programming/
+│   │   ├── 01-setup.md
+│   │   ├── 02-lambda.md
+│   │   └── ...
+│   └── book-slug/
+│       └── 01-intro.md
+├── _diaries/                 # 学习日志按作者分子目录
+│   ├── zhuxi/
+│   │   ├── 2025-11-21-first-diary.md
+│   │   └── 2025-11-22-second-diary.md
+│   └── author-key/
+│       └── YYYY-MM-DD-title.md
+├── diaries/                  # 日记本页面
+│   ├── zhuxi.md
+│   ├── phli.md
+│   └── author-key.md
 ├── _layouts/                 # 页面布局模板
 ├── assets/
 │   ├── css/style.scss        # 全局样式
@@ -55,6 +76,8 @@ bundle exec jekyll doctor
 │       ├── authors/          # 作者头像
 │       ├── posts/YYYY-MM-DD-slug/  # 文章图片(按文章分目录)
 │       └── books/book-slug/  # 书籍图片
+├── books.md                  # 书籍列表页
+├── diaries.md                # 学习日志主页(所有成员的日记本)
 ├── _config.yml               # 站点配置
 ├── QUICK_START.md            # 快速操作指南
 ├── CONTRIBUTING.md           # 协作规范
@@ -79,6 +102,7 @@ newmember:
     - 技能2
   focus: 近期关注的技术
   github: github用户名         # 可选
+  non_tech: false              # 是否为非技术成员(true 则不显示日记本)
 ```
 
 ### 添加新文章
@@ -107,27 +131,66 @@ cover: /assets/images/posts/2025-11-20-title/cover.png  # 可选
 - 工业控制
 - 教程
 
+### 添加学习日志
+
+1. 创建日记本页面(如果还没有): `diaries/author-key.md`
+
+```yaml
+---
+layout: author-diaries
+title: [昵称]的日记本
+permalink: /diaries/[author-key]/
+author_key: author-key         # 必须与 authors.yml 中的 key 一致
+---
+```
+
+2. 创建日志文件: `_diaries/author-key/YYYY-MM-DD-title.md`
+
+```yaml
+---
+layout: post
+title: "日志标题"
+author: author-key             # 使用 authors.yml 中的 key
+date: 2025-11-24
+tags: [学习, 技术探索]
+excerpt: 简短摘要
+---
+```
+
+**注意**:
+- 只有 IT 技术成员才会显示日记本(非技术成员设置 `non_tech: true`)
+- 日志文件按作者分目录存放: `_diaries/author-key/`
+- 日志采用与文章相同的 Markdown 格式
+
 ### 添加新书籍
 
-1. 创建书籍: `_books/book-slug.md`
+1. 复制模板创建书籍目录:
+
+```bash
+cp -r _templates/BOOK_TEMPLATE _books/my-book
+cd _books/my-book
+mv book.md my-book.md
+```
+
+2. 编辑书籍主文件: `_books/my-book/my-book.md`
 
 ```yaml
 ---
 title: 书籍标题
-slug: book-slug               # URL 标识符
+slug: my-book                  # 必须与目录名和文件名一致
 author: zhuxi                  # 使用 authors.yml 中的 key
 description: 书籍简介
-cover: /assets/images/books/book-slug/cover.png  # 可选
+cover: /assets/images/books/my-book/cover.png  # 可选
 order: 1                       # 排序
 ---
 ```
 
-2. 创建章节: `_chapters/book-slug-01.md`
+3. 在同一目录创建章节: `_books/my-book/my-book-01-intro.md`
 
 ```yaml
 ---
 title: 第一章: 章节标题
-book: book-slug                # 必须匹配书籍 slug
+book: my-book                  # 必须匹配书籍 slug
 order: 1                       # 章节顺序
 summary: 章节摘要
 ---
@@ -145,8 +208,10 @@ assets/images/
 │       ├── cover.png
 │       ├── diagram-flow.png
 │       └── screenshot-result.png
-└── books/
-    └── book-slug/     # 每本书独立目录
+├── books/
+│   └── book-slug/     # 每本书独立目录
+└── diaries/
+    └── author-key/    # 每位作者的日志图片
 ```
 
 ### 命名规范
@@ -205,7 +270,7 @@ git commit -m "[fix] 修正图片链接错误"
 | `CLAUDE.md` | 项目架构和设计原则 |
 | `ARCHITECTURE_IMPROVEMENTS.md` | 架构改进记录 |
 | `assets/images/README.md` | 图片规范 |
-| `_posts/POST_TEMPLATE.md` | 文章模板 |
+| `_templates/` | 所有模板文件(文章、书籍、章节、日志) |
 
 ## 常用命令
 
@@ -220,12 +285,15 @@ bundle exec jekyll build --trace
 bundle exec jekyll doctor
 
 # 查看内容
-ls _posts/2025/          # 文章列表
-ls _books/               # 书籍列表
-ls _chapters/            # 章节列表
+ls _posts/2025/                    # 文章列表
+ls _books/                         # 书籍列表
+ls _chapters/cpp-functional-programming/  # 查看某本书的章节
+ls _diaries/zhuxi/                 # 查看作者的学习日志
+ls diaries/                        # 日记本页面列表
 
 # 搜索
 grep -r "关键词" _posts/
+grep -r "关键词" _books/
 ```
 
 ## 技术栈

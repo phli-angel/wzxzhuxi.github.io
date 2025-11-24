@@ -1,0 +1,190 @@
+---
+layout: default
+---
+
+{% assign author_key = page.author_key %}
+{% assign author_data = site.data.authors[author_key] %}
+{% assign author_diaries = site.diaries | where: "author", author_key | sort: "date" | reverse %}
+
+<article class="author-diary-page">
+  <header class="author-diary-header">
+    <p class="breadcrumb">
+      <a href="/diaries/">所有日记</a> → {{ author_data.display_name }}的日记本
+    </p>
+    <h1>{{ author_data.display_name }}的日记本</h1>
+    <p class="author-bio">{{ author_data.bio }}</p>
+    <p class="diary-count">共 {{ author_diaries.size }} 篇日志</p>
+  </header>
+
+  <div class="posts-grid">
+    {% for diary in author_diaries %}
+      <article class="post-card diary-entry">
+        <div class="diary-date">{{ diary.date | date: "%Y-%m-%d" }}</div>
+        <h3>
+          <a href="{{ diary.url }}">{{ diary.title }}</a>
+        </h3>
+        {% if diary.mood or diary.weather or diary.location %}
+          <div class="diary-meta">
+            {% if diary.mood %}<span class="meta-item">{{ diary.mood }}</span>{% endif %}
+            {% if diary.weather %}<span class="meta-item">{{ diary.weather }}</span>{% endif %}
+            {% if diary.location %}<span class="meta-item">📍 {{ diary.location }}</span>{% endif %}
+          </div>
+        {% endif %}
+        <p class="post-excerpt">{{ diary.excerpt | strip_html | truncate: 150 }}</p>
+        <a href="{{ diary.url }}" class="read-more">阅读全文 →</a>
+      </article>
+    {% endfor %}
+  </div>
+</article>
+
+<style>
+  .author-diary-page {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+
+  .breadcrumb a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    border-bottom-color: #000;
+  }
+
+  .author-diary-header {
+    background: #fff;
+    border: 4px solid #000;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .author-diary-header h1 {
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+    border: none !important;
+    padding: 0 !important;
+    color: #000 !important;
+  }
+
+  .author-bio {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: #000;
+  }
+
+  .breadcrumb {
+    color: #000;
+  }
+
+  .diary-count {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #000;
+  }
+
+  .author-diary-page .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .diary-entry {
+    border: 3px solid #000;
+    padding: 2rem;
+    background: #fff;
+    transition: all 0.3s;
+  }
+
+  .diary-entry:hover {
+    box-shadow: 8px 8px 0 #000;
+    transform: translate(-4px, -4px);
+  }
+
+  .diary-date {
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  }
+
+  .diary-entry h3 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .diary-entry h3 a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .diary-entry h3 a:hover {
+    border-bottom-color: #000;
+    background: #000;
+    color: #fff !important;
+    padding: 0 0.3rem;
+  }
+
+  .diary-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .meta-item {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .diary-entry .post-excerpt {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    opacity: 0.85;
+  }
+
+  .diary-entry .read-more {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #000 !important;
+    text-decoration: none !important;
+    border-bottom: 2px solid #000;
+    transition: all 0.2s;
+  }
+
+  .diary-entry .read-more:hover {
+    background: #000;
+    color: #fff !important;
+    padding: 0 0.3rem;
+  }
+
+  @media (max-width: 768px) {
+    .author-diary-page .posts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .author-diary-header {
+      padding: 1.5rem;
+    }
+
+    .author-diary-header h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

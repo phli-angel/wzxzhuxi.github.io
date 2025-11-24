@@ -22,7 +22,7 @@ git remote add upstream https://github.com/wzxzhuxi/wzxzhuxi.github.io.git
 # 4. 创建功能分支
 git checkout -b add-my-article
 
-# 5. 添加文章（参考 _posts/POST_TEMPLATE.md 模板）
+# 5. 添加文章（参考 _templates/POST_TEMPLATE.md 模板）
 # 文件放入 _posts/YYYY/ 目录
 nano _posts/2025/2025-01-18-article-title.md
 
@@ -48,7 +48,7 @@ cd wzxzhuxi.github.io
 # 2. 创建功能分支
 git checkout -b add-my-article
 
-# 3. 添加内容（参考 _posts/POST_TEMPLATE.md 模板）
+# 3. 添加内容（参考 _templates/POST_TEMPLATE.md 模板）
 nano _posts/2025/2025-01-18-my-article.md
 
 # 4. 提交并推送
@@ -59,17 +59,7 @@ git push origin add-my-article
 # 5. 创建 Pull Request（推荐）
 ```
 
-### 方式三：GitHub Issue 投稿
-
-**适合**：不熟悉 Git 的作者
-
-1. 访问 [Issues 页面](https://github.com/wzxzhuxi/wzxzhuxi.github.io/issues/new)
-2. 标题：`[投稿] 文章标题`
-3. 粘贴 Markdown 内容（包含 front matter）
-4. 上传图片或提供链接
-5. 提交 Issue
-
-### 方式四：邮件投稿
+### 方式三：邮件投稿
 
 **适合**：完全不熟悉 GitHub 的作者
 
@@ -119,7 +109,7 @@ git commit -m "[feat] 添加 Python 基础教程系列
 
 ### 文章格式（`_posts/YYYY/YYYY-MM-DD-slug.md`）
 
-**参考模板**: [`_posts/POST_TEMPLATE.md`](./_posts/POST_TEMPLATE.md)
+**参考模板**: [`_templates/POST_TEMPLATE.md`](./_templates/POST_TEMPLATE.md)
 
 ```yaml
 ---
@@ -314,7 +304,6 @@ std::vector<int> v = {{1, 2, 3}};
 
 - **文档**：[CLAUDE.md](./CLAUDE.md)
 - **仓库**：[https://github.com/wzxzhuxi/wzxzhuxi.github.io](https://github.com/wzxzhuxi/wzxzhuxi.github.io)
-- **Issues**：[提交问题](https://github.com/wzxzhuxi/wzxzhuxi.github.io/issues)
 - **联系**：[@wzxzhuxi](https://github.com/wzxzhuxi)
 
 ---

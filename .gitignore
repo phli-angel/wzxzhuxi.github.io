@@ -1,6 +1,6 @@
 # Ruby / Bundler
 .bundle/
-vendor/bundle/
+vendor/
 Gemfile.lock
 
 # Jekyll artifacts
