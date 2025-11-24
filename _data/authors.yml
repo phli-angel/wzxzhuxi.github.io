@@ -1,0 +1,81 @@
+# 作者数据库
+# 每个作者使用唯一的 key (小写字母,无空格)
+# 文章中使用 author: key 来引用
+
+zhuxi:
+  name: Zhuxi
+  display_name: 老王
+  role: 团队负责人 / 后端工程师
+  avatar: /assets/images/authors/zhuxi.jpg
+  bio: Zhuxi 热衷函数式编程与底层技术，是团队组织者与 GNU/Linux 爱好者。
+  areas:
+    - 嵌入式开发
+    - 分布式系统
+  focus: Kubernetes 编排、gRPC 服务
+  github: wzxzhuxi
+
+phli:
+  name: Phli
+  display_name: 老高
+  role: 上位机工程师
+  avatar: /assets/images/authors/phli.jpg
+  bio: Phli 负责设备控制、数据交互与三维可视化协作，也常常在本站分享前端与工控相关文章，严重代码强迫症患者。
+  areas:
+    - C#/.NET
+    - 工业控制
+  focus: C/S 架构、DCS 技术
+
+allen:
+  name: Allen
+  display_name: 没看见
+  role: 嵌入式工程师
+  avatar: /assets/images/authors/allen.jpg
+  bio: Allen 负责各种牛马活，能干但不多，看到消息请及时 @ 他催更。
+  areas:
+    - STM32
+    - ROS
+  focus: Autoware、双目相机、AGV
+
+leon:
+  name: Leon
+  display_name: 鱼晓亮
+  role: 大数据分析
+  avatar: /assets/images/authors/leon.jpg
+  bio: Leon 擅长把原始数据转化为可执行洞察，搭建稳健的数据管道并探索机器学习的应用。
+  areas:
+    - 机器学习
+    - 数据管道
+  focus: 实时数据处理、MLOps、特征工程
+
+lele:
+  name: Lele
+  display_name: she
+  role: 前端工程师
+  avatar: /assets/images/authors/lele.jpg
+  bio: Lele 是一位优秀的前端工程师，尽管她很年轻,但对于页面设计与前后端交互有丰富的开发经验，她最近在阅读《Vue.js 设计与实现》。
+  areas:
+    - JS
+    - Vue3
+    - Vite
+  focus: 低代码开发、Agent
+
+ethan:
+  name: Ethen
+  display_name: 小白
+  role: Java工程师
+  avatar:  
+  bio: 牛马本马, 希望自己的双手能创造真正的东西。
+  areas:
+    - Javaweb
+    - Springboot
+  focus: n8s、Vue
+
+bg:
+  name: BG
+  display_name: 牛志
+  role: 金融从业者
+  avatar: /assets/images/authors/bg.jpg
+  bio: BG 为我们的金融分析平台提供宝贵的信息来源，目前在资产管理公司任职，努力学习期货交易，希望早日与爱人共居一城。
+  areas:
+    - 金融分析
+  focus: 心态管理

@@ -13,7 +13,15 @@ permalink: /books/
         <h2>
           <a href="{{ book.url }}">{{ book.title }}</a>
         </h2>
-        <p class="post-meta">多章节长文 · 作者：{{ book.author | default: "A_Bit_S 团队" }}</p>
+        {% assign book_author_data = site.data.authors[book.author] %}
+        <p class="post-meta">
+          多章节长文 · 作者：
+          {% if book_author_data %}
+            {{ book_author_data.name }}
+          {% else %}
+            {{ book.author | default: "A_Bit_S 团队" }}
+          {% endif %}
+        </p>
         <p class="post-excerpt">{{ book.description | strip_html | truncate: 220 }}</p>
         <a href="{{ book.url }}" class="read-more">查看章节 →</a>
       </article>

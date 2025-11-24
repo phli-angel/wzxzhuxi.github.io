@@ -239,6 +239,40 @@ blockquote p {
   color: var(--color-white);
 }
 
+/* Images - Responsive & Styled */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border: 3px solid var(--color-black);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Image captions via markdown */
+.post-content img + em {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-gray);
+  margin-top: -1.5rem;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+/* Inline images - smaller sizing */
+.post-content p img {
+  display: inline-block;
+  margin: 0.5rem;
+  max-width: 300px;
+}
+
+/* Full-width images */
+.post-content img.full-width {
+  max-width: 100%;
+  width: 100%;
+}
+
 /* Tables - Clean Grid */
 table {
   border-collapse: collapse;

@@ -12,58 +12,30 @@ permalink: /team/
 
 ## Core Members
 
-### Zhuxi 老王 - 团队负责人 / 后端工程师
-**领域**：嵌入式开发、分布式系统
+{% for author_entry in site.data.authors %}
+  {% assign author_key = author_entry[0] %}
+  {% assign author = author_entry[1] %}
+  {% unless author_key == 'bg' %}
+### {{ author.name }} {{ author.display_name }} - {{ author.role }}
+**领域**：{{ author.areas | join: '、' }}
 
-Zhuxi 热衷函数式编程与底层技术，是团队组织者与 GNU/Linux 爱好者。
+{{ author.bio }}
 
-**近期关注**：Kubernetes 编排、gRPC 服务
-
----
-
-### Phli 老高 - 上位机工程师
-**领域**：C#/.NET、工业控制
-
-Phli 负责设备控制、数据交互与三维可视化协作，也常常在本站分享前端与工控相关文章，严重代码强迫症患者。
-
-**近期关注**：C/S 架构、DCS 技术
+**近期关注**：{{ author.focus }}
 
 ---
 
-### Allen 没看见 - 嵌入式工程师
-**领域**：STM32、ROS
-
-Allen 负责各种牛马活，能干但不多，看到消息请及时 @ 他催更。
-
-**近期关注**：Autoware、双目相机、AGV
-
----
-
-### Leon 鱼晓亮 - 大数据分析
-**领域**：机器学习、数据管道
-
-Leon 擅长把原始数据转化为可执行洞察，搭建稳健的数据管道并探索机器学习的应用。
-
-**近期关注**：实时数据处理、MLOps、特征工程
-
----
-
-### Lele she - 前端工程师
-**领域**：JS, Vue3, Vite
-
-Lele 是一位优秀的前端工程师，尽管她很年轻,但对于页面设计与前后端交互有丰富的开发经验，她最近在阅读《Vue.js 设计与实现》。
-
-**近期关注**：低代码开发、Agent
-
----
+  {% endunless %}
+{% endfor %}
 
 ## 非 IT 合作伙伴
 
-### BG 牛志 - 金融从业者
+{% assign bg = site.data.authors.bg %}
+### {{ bg.name }} {{ bg.display_name }} - {{ bg.role }}
 
-BG 为我们的金融分析平台提供宝贵的信息来源，目前在资产管理公司任职，努力学习期货交易，希望早日与爱人共居一城。
+{{ bg.bio }}
 
-**近期关注**：心态管理
+**近期关注**：{{ bg.focus }}
 
 ---
 

@@ -1,9 +1,11 @@
 ---
 layout: post
 title: .NET Core 数据库操作方法
-author: Phli
+author: phli
 date: 2025-11-15
-tags: [.NET Core, SQL Server, Database, ADO.NET]
+categories: [工业控制]
+tags: [.NET Core, C#, SQL Server, Database, ADO.NET]
+excerpt: 在 .NET Core 项目中操作 SQL Server 数据库的实用方法,涵盖 SQL 执行、参数化查询、事务处理和存储过程调用
 ---
 
 # .NET Core 数据库操作方法

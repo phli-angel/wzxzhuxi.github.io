@@ -12,15 +12,23 @@ permalink: /authors/
 {% assign grouped_authors = site.posts | group_by: "author" | sort: "name" %}
 
 <div class="authors-grid" id="authors-list">
-  {% for author in grouped_authors %}
-    <article class="author-card" data-author="{{ author.name | downcase }}">
+  {% for author_group in grouped_authors %}
+    {% assign author_key = author_group.name %}
+    {% assign author_data = site.data.authors[author_key] %}
+    <article class="author-card" data-author="{{ author_key | downcase }}">
       <div class="author-header">
         <p class="author-label">作者</p>
-        <h2>{{ author.name }}</h2>
-        <p class="author-count">{{ author.items | size }} 篇文章</p>
+        <h2>
+          {% if author_data %}
+            {{ author_data.name }}
+          {% else %}
+            {{ author_key }}
+          {% endif %}
+        </h2>
+        <p class="author-count">{{ author_group.items | size }} 篇文章</p>
       </div>
       <div class="posts-grid">
-        {% for post in author.items %}
+        {% for post in author_group.items %}
           <article class="post-card"
                    data-post-title="{{ post.title | downcase | escape }}"
                    data-post-author="{{ post.author | default: author.name | downcase | escape }}">
@@ -98,6 +106,19 @@ permalink: /authors/
     letter-spacing: 0.1em;
     opacity: 0.7;
     text-transform: uppercase;
+  }
+
+  .author-role {
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+
+  .author-bio {
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.85;
   }
 
   .authors-grid .posts-grid {

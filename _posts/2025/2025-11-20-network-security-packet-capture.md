@@ -1,8 +1,12 @@
 ---
-title: 网络安全技术-抓包技术
-author: Phli
+layout: post
+title: "网络安全技术-抓包技术"
+author: phli
 date: 2025-11-20
+categories: [网络安全]
 tags: [网络安全, Charles, WireShark, BurpSuite, proxifier]
+excerpt: >
+  介绍主要的抓包软件与使用方法，涵盖 HTTP/HTTPS 协议抓包，包括 Fiddler、Charles、Burp Suite、Wireshark 等工具的特点与应用场景。
 ---
 
 # 网络安全技术-抓包技术

@@ -24,6 +24,19 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
 
+# 预定义分类(避免混乱,团队成员只能使用这些分类)
+# 使用方法: categories: [后端开发]
+allowed_categories:
+  - 后端开发
+  - 前端开发
+  - 嵌入式
+  - 数据工程
+  - 工业控制
+  - 教程
+
+# 标签无限制,但建议使用技术名称作为标签
+# 使用方法: tags: [C++, Python, Docker]
+
 # Collections
 collections:
   books:
@@ -39,6 +52,7 @@ defaults:
       type: posts
     values:
       author: A_Bit_S Team
+      permalink: /:year/:month/:day/:title/
   - scope:
       path: ""
       type: books
@@ -57,6 +71,8 @@ paginate_path: "/page/:num/"
 # Navigation
 header_pages:
   - team.md
+  - books/index.md
+  - authors/index.md
 
 # Exclude from processing
 exclude:
@@ -69,3 +85,5 @@ exclude:
   - vendor/ruby/
   - .gitignore
   - README.md
+  - QUICK_START.md
+  - ARCHITECTURE_IMPROVEMENTS.md
