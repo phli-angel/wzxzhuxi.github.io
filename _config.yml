@@ -44,6 +44,10 @@ collections:
     permalink: /books/:name/
   chapters:
     output: true
+    permalink: /books/:name/
+  diaries:
+    output: true
+    permalink: /diaries/:name/
 
 # Defaults for collections and posts
 defaults:
@@ -63,6 +67,11 @@ defaults:
       type: chapters
     values:
       layout: chapter
+  - scope:
+      path: ""
+      type: diaries
+    values:
+      layout: diary
 
 # Pagination
 paginate: 6
@@ -71,19 +80,23 @@ paginate_path: "/page/:num/"
 # Navigation
 header_pages:
   - team.md
-  - books/index.md
-  - authors/index.md
+  - authors.md
+  - books.md
+  - diaries.md
 
 # Exclude from processing
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
+  - vendor/
   - .gitignore
+  - .bundle/
   - README.md
+  - README_EN.md
   - QUICK_START.md
+  - HOW_TO_ADD.md
+  - CLAUDE.md
+  - CONTRIBUTING.md
   - ARCHITECTURE_IMPROVEMENTS.md
+  - LICENSE
